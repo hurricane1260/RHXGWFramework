@@ -1,0 +1,57 @@
+//
+//  PrefixHeader.pch
+//  RHXGWFramework
+//
+//  Created by 吴紫月 on 2018/1/9.
+//  Copyright © 2018年 rxhui. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __OBJC__
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+@import Foundation;
+@import UIKit;
+
+//#import <Foundation/Foundation.h>
+//#import <UIKit/UIKit.h>
+#import "AppConstants.h"
+#import "APPEnum.h"
+#import "AppMacro.h"
+#import "AppModuleClassName.h"
+#import "BaseViewController.h"
+#import "NSDate+RHJX_Inc.h"
+#import "UIButton+RHJX_Inc.h"
+#import "UIScrollView+PullRefresh.h"
+#import "UIColor+RHJX_Inc_.h"
+#import "UIView+RHJX_Inc_Fram.h"
+#import "UILabel+RHJX_Inc.h"
+#import "NSString+RXJX_Inc.h"
+#import "NSObject+ModelParser.h"
+#import "CMAlert.h"
+#import "CMProgress.h"
+#import "NSData+RHJX_Inc_.h"
+#import "NSMutableData+RHJX_Inc_.h"
+#import "UIImageUtils.h"
+#import "UIView+RHJX_Inc_Animation.h"
+#import "UIFont+RHJX_Inc_Num.h"
+#import "UITabBar+RHJX_Inc_Badge.h"
+#import "UIImageView+WebCache.h"
+#import "UIImageView+RHJX_Inc_UrlImgSize.h"
+
+#import "ASIHttpTool.h"
+
+#import "CPStringHandler.h"
+#import "TimeUtils.h"
+//#import "PlaceholderView.h"
+
+#import "CMComponent.h"
+#import "MTA.h"
+#import "MTAConfig.h"
+#import "UIView+RXJX_Inc_CustomUI.h"
+
+#endif /* __OBJC__ */
+
+#endif /* PrefixHeader_pch */
