@@ -144,30 +144,41 @@ static UIImage *originImg;
                     
                     
                     idInfo.faceImg = [UIImage imageWithCGImage:imgRef];
-                    CFRelease(imgRef);
-                    
+                    if (imgRef) {
+                        CFRelease(imgRef);
+                    }
                     imgRef = CGImageCreateWithImageInRect(quartzImage,CGRectMake(idcard.rtSex.nLft, idcard.rtSex.nTop, idcard.rtSex.nRgt - idcard.rtSex.nLft, idcard.rtSex.nBtm - idcard.rtSex.nTop));
                     idInfo.sexImg = [UIImage imageWithCGImage:imgRef];
-                    CFRelease(imgRef);
-                    
+                    if (imgRef) {
+                        
+                        CFRelease(imgRef);
+                    }
                     
                     imgRef = CGImageCreateWithImageInRect(quartzImage,CGRectMake(idcard.rtCardID.nLft, idcard.rtCardID.nTop, idcard.rtCardID.nRgt - idcard.rtCardID.nLft, idcard.rtCardID.nBtm - idcard.rtCardID.nTop));
                     idInfo.noImg = [UIImage imageWithCGImage:imgRef];
-                    CFRelease(imgRef);
-                    
+                    if (imgRef) {
+                        CFRelease(imgRef);
+                    }
                     imgRef = CGImageCreateWithImageInRect(quartzImage,CGRectMake(idcard.rtAddress.nLft, idcard.rtAddress.nTop, idcard.rtAddress.nRgt - idcard.rtAddress.nLft, idcard.rtAddress.nBtm - idcard.rtAddress.nTop));
                     idInfo.addressImg = [UIImage imageWithCGImage:imgRef];
-                    CFRelease(imgRef);
-                    
+                    if (imgRef) {
+                        
+                        CFRelease(imgRef);
+                        
+                    }
                 }else{
                     imgRef = CGImageCreateWithImageInRect(quartzImage,CGRectMake(idcard.rtIssue.nLft, idcard.rtIssue.nTop, idcard.rtIssue.nRgt - idcard.rtIssue.nLft, idcard.rtIssue.nBtm - idcard.rtIssue.nTop));
                     idInfo.issueImg = [UIImage imageWithCGImage:imgRef];
-                    CFRelease(imgRef);
-                    
+                    if (imgRef) {
+                        
+                        CFRelease(imgRef);
+                    }
                     imgRef = CGImageCreateWithImageInRect(quartzImage,CGRectMake(idcard.rtValid.nLft, idcard.rtValid.nTop, idcard.rtValid.nRgt - idcard.rtValid.nLft, idcard.rtValid.nBtm - idcard.rtValid.nTop));
                     idInfo.validImg = [UIImage imageWithCGImage:imgRef];
-                    CFRelease(imgRef);
-                    
+                    if (imgRef) {
+                        
+                        CFRelease(imgRef);
+                    }
                 }
                 
                 CFRelease(quartzImage);

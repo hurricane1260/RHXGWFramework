@@ -59,13 +59,44 @@
         promptLabel.backgroundColor = [UIColor clearColor];
         promptLabel.textAlignment = NSTextAlignmentCenter;
         promptLabel.textColor = [UIColor greenColor];
-        promptLabel.font = [UIFont boldSystemFontOfSize:20];
+        promptLabel.font = [UIFont boldSystemFontOfSize:17];
         promptLabel.text = @"请将身份证放在屏幕中央，正面朝上";
+        promptLabel.numberOfLines = 0;
         [self addSubview:promptLabel];
         promptLabel.transform = transform;
         float x = frame.size.width * 22 / 54;
         x = x + (frame.size.width - x) / 2;
-        promptLabel.center = CGPointMake(x, frame.size.height/2);
+        promptLabel.center = CGPointMake(frame.size.width-35, frame.size.height/2);
+
+
+        self.headImage = [[UIImageView alloc]init];
+        UIImage * image1 = [UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/img_idcard_background"];
+        self.headImage.image = image1;
+        self.headImage.size = CGSizeMake(image1.size.width, image1.size.height);
+        [self addSubview:self.headImage];
+        self.headImage.transform = transform;
+        
+        if (IS_IPHONE_5) {
+            self.headImage.center = CGPointMake(frame.size.width-76-image1.size.height/2, frame.size.height-90-image1.size.width/2);
+        }else{
+            self.headImage.center = CGPointMake(frame.size.width-76-image1.size.height/2, frame.size.height-134-image1.size.width/2);
+        }
+        
+        
+        self.naEmblemImage = [[UIImageView alloc]init];
+        UIImage * image2 = [UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/img_idcard_backgroundback"];
+        self.naEmblemImage.image = image2;
+        self.naEmblemImage.size = CGSizeMake(image2.size.width, image2.size.height);
+        [self addSubview:self.naEmblemImage];
+        self.naEmblemImage.transform = transform;
+        if (IS_IPHONE_5) {
+            self.naEmblemImage.center = CGPointMake(frame.size.width-67-image2.size.height/2, 60+image2.size.width/2);
+        }else{
+            self.naEmblemImage.center = CGPointMake(frame.size.width-67-image2.size.height/2, 92+image2.size.width/2);
+        }
+        
+        
+        
 
 //        UILabel *labelT = [[UILabel alloc] initWithFrame:CGRectMake(0,  0, frame.size.height, 50)];
 //        labelT.backgroundColor = [UIColor clearColor];

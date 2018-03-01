@@ -167,14 +167,33 @@ kRhPStrong NSMutableArray * MuArray;
 - (void)layoutSubviews{
     [super layoutSubviews];
     
-    
-     CGSize size = [ForumLayoutManager autoSizeWidthOrHeight:MAXFLOAT width:MAIN_SCREEN_WIDTH - 48.0f fontsize:14 content:self.questionLabel.text space:4];
+    CGSize size = [ForumLayoutManager autoSizeWidthOrHeight:MAXFLOAT width:MAIN_SCREEN_WIDTH - 48.0f fontsize:14 content:[NSString stringWithFormat:@"%@请如实回答",self.questionLabel.text] space:4];
+
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.questionLabel.text];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:4];
     paragraphStyle.lineBreakMode = NSLineBreakByClipping;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.questionLabel.text length])];
+    
+    if ([self.testVo.question_content rangeOfString:@"您的主要收入来源是"].location!= NSNotFound ||[self.testVo.question_content rangeOfString:@"以下描述中何种符合您的实际情况"].location!= NSNotFound ||[self.testVo.question_content rangeOfString:@"您的投资经验可以被概括为"].location!= NSNotFound ||[self.testVo.question_content rangeOfString:@"您投资经验在两年以上的有"].location!= NSNotFound ||[self.testVo.question_content rangeOfString:@"您家庭的就业状况是"].location!= NSNotFound) {
+        
+        
+        // 2.添加表情图片
+        NSTextAttachment *attch = [[NSTextAttachment alloc] init];
+        // 表情图片
+        UIImage * image = [UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/img_question_survey"];
+        attch.image = image;
+        // 设置图片大小
+        attch.bounds = CGRectMake(0, -3, image.size.width, image.size.height);
+        
+        // 创建带有图片的富文本
+        NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
+        [attributedString insertAttributedString:string atIndex:self.questionLabel.text.length];// 插入某个位置
+        
+        
+    }
+    // 用label的attributedText属性来使用富文本
     self.questionLabel.attributedText = attributedString;
     
     self.questionLabel.frame = CGRectMake(24.0f, 0, size.width, size.height);
@@ -210,14 +229,14 @@ kRhPStrong NSMutableArray * MuArray;
 //判断单选还是多选
     if ([self.testVo.question_kind isEqualToString:@"1"]) {
         
-        [str insertString:@"(多选题)" atIndex:str.length];
+        [str insertString:@"(多选)" atIndex:str.length];
       self.questionLabel.text = [NSString stringWithFormat:@"%ld、%@",(long)row+1,str];
         
         
     }else if ([self.testVo.question_kind isEqualToString:@"0"]){
         
         
-        [str insertString:@"(单选题)" atIndex:str.length];
+        [str insertString:@"(单选)" atIndex:str.length];
         self.questionLabel.text = [NSString stringWithFormat:@"%ld、%@",(long)row+1,str];
     }
     

@@ -34,7 +34,8 @@ kRhPStrong UIButton * nextBtn;
 - (void)initSubviews{
     self.selectBtn = [UIButton didBuildButtonWithNormalImage:img_open_click highlightImage:img_open_click];
     [self.selectBtn addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.isSelected = NO;
+//    self.isSelected = NO;
+    self.isSelected = YES;
     [self addSubview:self.selectBtn];
     
     self.agreeLabel = [UILabel didBuildLabelWithText:@"我已阅读并同意：" font:font1_common_xgw textColor:color2_text_xgw wordWrap:NO];

@@ -18,6 +18,9 @@
 #define PROMPT_FRONT    @"确保证件完全放置在方框内，且文字清晰刻度，并关闭闪光灯"
 #define PROMPT_BACK     @"确保证件完全放置在方框内，且文字清晰刻度，并关闭闪光灯"
 
+#define PROMPT_FRONT_20180110    @"保持证件清晰,正面朝上,无反光\n<系统自动识别>"
+#define PROMPT_BACK_20180110     @"保持证件清晰,背面朝上,无反光\n<系统自动识别>"
+
 #define ERROR_FRONT     @"检测到身份证背面，请将正面朝上"
 #define ERROR_BACK      @"检测到身份证正面，请将背面朝上"
 //判断系统版本
@@ -143,10 +146,18 @@ CGRect getIDPreViewFrame( int previewWidth, int previewHeight)
         [self.cameraController.captureSession startRunning];
         [self.cameraController resetRecParams];
     }
+  
     if (self.bShouldFront) {
-        _frameView.promptLabel.text = PROMPT_FRONT;
+        _frameView.promptLabel.text = PROMPT_FRONT_20180110;
+        _frameView.headImage.image = [UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/img_idcard_background"];
+        _frameView.naEmblemImage.hidden = YES;
+        _frameView.headImage.hidden = NO;
+        
     } else {
-        _frameView.promptLabel.text = PROMPT_BACK;
+        _frameView.promptLabel.text = PROMPT_BACK_20180110;
+        _frameView.naEmblemImage.image = [UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/img_idcard_backgroundback"];
+        _frameView.naEmblemImage.hidden = NO;
+        _frameView.headImage.hidden = YES;
     }
     
 }
@@ -473,9 +484,16 @@ CGRect getIDPreViewFrame( int previewWidth, int previewHeight)
 {
     _frameView.promptLabel.textColor = [UIColor greenColor];
     if (self.bShouldFront) {
-        _frameView.promptLabel.text = PROMPT_FRONT;
+        _frameView.promptLabel.text = PROMPT_FRONT_20180110;
+        _frameView.headImage.image = [UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/img_idcard_background"];
+        _frameView.naEmblemImage.hidden = YES;
+        _frameView.headImage.hidden = NO;
     } else if (!self.bShouldFront){
-        _frameView.promptLabel.text = PROMPT_BACK;
+        _frameView.promptLabel.text = PROMPT_BACK_20180110;
+        _frameView.naEmblemImage.image = [UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/img_idcard_backgroundback"];
+        _frameView.naEmblemImage.hidden = NO;
+        _frameView.headImage.hidden = YES;
+        
     }
     self.bLastWrong = NO;
 }

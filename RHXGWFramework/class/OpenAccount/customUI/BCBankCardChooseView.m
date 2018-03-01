@@ -21,8 +21,6 @@ kRhPStrong UIButton * arrowBtn;
 
 kRhPStrong UIImageView * bankImgView;
 
-kRhPStrong UILabel * bankNameLabel;
-
 kRhPAssign BOOL hasSelectBank;
 @end
 

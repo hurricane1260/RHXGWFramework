@@ -218,7 +218,13 @@ kRhPAssign BOOL needRectify;
         
         //只滚动单选题
         if ([type isEqualToString:@"0"]) {
-            [welf.bgScrollView setContentOffset:CGPointMake(0, cellH) animated:YES];
+            //subjectIndex 19说明是最后一道题 最后一道题不需要在滚动题目
+            if ([subjectIndex integerValue] != self.riskTestArr.count-1) {
+                
+                [welf.bgScrollView setContentOffset:CGPointMake(0, cellH) animated:YES];
+                
+            }
+            
         }
         
     };
@@ -820,21 +826,22 @@ kRhPAssign BOOL needRectify;
         warnStr = @"该学历信息是根据您在个人信息页的选择结果确定的,如需修改,请返回重新修改个人信息.";
 
     }
-    
-    
     UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"提示" message:warnStr preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *defaultAction=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *actoin){}];//在代码块中可以填写具体这个按钮执行的操作
-    [alert addAction:defaultAction];
-
-    UIAlertAction * alterAction =[UIAlertAction actionWithTitle:@"修改信息" style:UIAlertActionStyleDefault handler:^(UIAlertAction *actoin){
+    UIAlertAction *defaultAction=[UIAlertAction actionWithTitle:@"修改信息" style:UIAlertActionStyleDefault handler:^(UIAlertAction *actoin){
+        
         //存储用户没有提交的答案
         [RHOpenAccStoreData storeOpenAccCachUserInfo:self.riskTestResultDic withKey:kOpenAccountRiskAnswer];
         [MNNavigationManager navigationToUniversalVC:welf withClassName:@"RHIDCardController" withParam:nil];
         
+        
+    }];//在代码块中可以填写具体这个按钮执行的操作
+    [alert addAction:defaultAction];
     
+    UIAlertAction * alterAction =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *actoin){
+        
     }];
     [alert addAction:alterAction];
-
+    
     [self presentViewController: alert animated:YES completion:nil];
 
     

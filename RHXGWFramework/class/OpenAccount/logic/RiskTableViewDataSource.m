@@ -128,7 +128,7 @@
     //因为cell中有对testVo.question_content的处理 拼接了 题号1、和 (多选题)和(单选题)所以这里计算高度时也要加上。
     
     NSMutableString * str = [[NSMutableString alloc]initWithString:testVo.question_content];
-    [str insertString:@"(多选题)" atIndex:str.length];
+    [str insertString:@"(多选)请如实回答" atIndex:str.length];
     NSString * content = [NSString stringWithFormat:@"%ld、%@",(long)indexPath.row+1,str];
 
     CGFloat questionH = [ForumLayoutManager autoCalculateWidthOrHeight:MAXFLOAT width:MAIN_SCREEN_WIDTH - 48.0f fontsize:14 content:content space:4.0];

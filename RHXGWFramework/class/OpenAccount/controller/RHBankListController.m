@@ -105,11 +105,14 @@ kRhPStrong OARequestManager * oAManager;
 }
 
 - (void)requestToBankList{
-    
+    [CMProgress showBeginProgressWithMessage:@"加载中..." superView:self.view];
+
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     
     __weak typeof (self) welf = self;
     [self.oAManager sendCommonRequestWithParam:param withRequestType:kGetBankList withUrlString:@"crhDepositBankQuery" withCompletion:^(BOOL success, id resultData) {
+        [CMProgress hiddenWithAnimation:NO];
+
         if (success) {
             if (!resultData || ![resultData isKindOfClass:[NSArray class]]) {
                 NSLog(@"银行列表获取失败");

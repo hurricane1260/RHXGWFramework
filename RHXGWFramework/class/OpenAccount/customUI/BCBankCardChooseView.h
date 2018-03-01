@@ -16,4 +16,7 @@ kRhPStrong id  bank;
 kRhPCopy ButtonCommonCallBack chooseCallBack;
 
 kRhPCopy NSString * bankName;
+
+kRhPStrong UILabel * bankNameLabel;
+
 @end

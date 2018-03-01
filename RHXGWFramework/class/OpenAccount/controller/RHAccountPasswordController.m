@@ -110,7 +110,7 @@ kRhPStrong NSMutableArray * managerArr;
         self.view.backgroundColor = color1_text_xgw;
         self.needRectify = NO;
         self.isHuShenSelected = YES;
-        self.isAgreed = NO;
+        self.isAgreed = YES;
         self.isMatch = YES;
 
         self.protocolArr = [NSMutableArray array];

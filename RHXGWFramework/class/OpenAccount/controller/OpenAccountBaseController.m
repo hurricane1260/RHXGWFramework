@@ -32,7 +32,21 @@ kRhPStrong UIButton * quitBtn;
 }
 
 - (void)quitOpenAccount{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"提示" message:@"您确定退出开户吗?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *defaultAction=[UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction *actoin){
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];//在代码块中可以填写具体这个按钮执行的操作
+    UIAlertAction *quitAction=[UIAlertAction actionWithTitle:@"继续开户" style:UIAlertActionStyleDefault handler:^(UIAlertAction *actoin){
+        
+        
+    }];
+    
+    [alert addAction:defaultAction];
+    [alert addAction:quitAction];
+    [self presentViewController: alert animated:YES completion:nil];
+    
 }
 
 @end

@@ -257,6 +257,8 @@ kRhPStrong BCBankCardNumView * bankNoView;
         self.bankNoView.textField.text = bankAccCode;
     }
     [self checkAccAndBank];
+    [self checkEnableBtn];
+
     //[self.view setNeedsLayout];
 }
 
@@ -278,10 +280,23 @@ kRhPStrong BCBankCardNumView * bankNoView;
     self.selectedBank = vo;
     
     if ([vo.bank_name containsString:@"民生"]) {
-        self.bankPwView.placeholder = @"请输入支付密码";
+        self.bankPwView.placeholder = @"请输入查询密码";
     }
     else{
         self.bankPwView.placeholder = @"请输入6位银行卡密码";
+        
+    }
+    
+    if ([vo.bank_name containsString:@"广发"]||[vo.bank_name isEqualToString:@"中国银行"]||[vo.bank_name containsString:@"建设"]||[vo.bank_name containsString:@"交通"]) {
+        
+        self.bankPwView.hidden = YES;
+        self.bottomScrollow.autoLine.hidden = YES;
+        
+    }else{
+        
+        self.bankPwView.hidden = NO;
+        self.bottomScrollow.autoLine.hidden = NO;
+        
         
     }
     
@@ -571,12 +586,29 @@ kRhPStrong BCBankCardNumView * bankNoView;
 }
 
 - (void)checkEnableBtn{
-    if (self.selectedBank && self.bankNoView.textField.text.length && self.bankPwView.textField.text.length && self.isAgree && self.isSupport) {
-        self.nextView.enable = YES;
+    
+    if ([self.selectedBank.bank_name containsString:@"广发"]||[self.selectedBank.bank_name isEqualToString:@"中国银行"]||[self.selectedBank.bank_name containsString:@"建设"]||[self.selectedBank.bank_name containsString:@"交通"]) {
+        
+        
+        if (self.selectedBank && self.bankNoView.textField.text.length && self.isAgree && self.isSupport) {
+            self.nextView.enable = YES;
+        }
+        else{
+            self.nextView.enable = NO;
+        }
+        
+        
+    }else{
+        
+        if (self.selectedBank && self.bankNoView.textField.text.length && self.bankPwView.textField.text.length && self.isAgree && self.isSupport) {
+            self.nextView.enable = YES;
+        }
+        else{
+            self.nextView.enable = NO;
+        }
+        
     }
-    else{
-        self.nextView.enable = NO;
-    }
+    
 }
 
 - (void)checkAccAndBank{
@@ -710,11 +742,25 @@ kRhPStrong BCBankCardNumView * bankNoView;
     self.selectedBank.econtract_id = [CRHBankVoRuleQuery queryBankInfoWithKey:@"econtract_id" withBankName:self.selectedBank.bank_name];
     
     if ([self.bankInfo.bankName containsString:@"民生"]) {
-        self.bankPwView.placeholder = @"请输入支付密码";
+        self.bankPwView.placeholder = @"请输入查询密码";
     }
     else{
         self.bankPwView.placeholder = @"请输入6位银行卡密码";
     }
+    
+    if ([self.bankView.bankNameLabel.text isEqualToString:@"广发银行"]||[self.bankView.bankNameLabel.text isEqualToString:@"中国银行"]||[self.bankView.bankNameLabel.text isEqualToString:@"建设银行"]||[self.bankView.bankNameLabel.text isEqualToString:@"交通银行"]) {
+        
+        self.bankPwView.hidden = YES;
+        self.bottomScrollow.autoLine.hidden = YES;
+        
+    }else{
+        
+        self.bankPwView.hidden = NO;
+        self.bottomScrollow.autoLine.hidden = NO;
+        
+        
+    }
+    
     self.isSupport = YES;
     [self requestBankProtocol];
     [self checkEnableBtn];
