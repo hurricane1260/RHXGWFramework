@@ -47,7 +47,7 @@
         
         scan_num = 0;
         _line = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCANLINE_WIDTH, frame.size.width)];
-        _line.image = [UIImage imageNamed:@"scan_line_portrait.png"];
+        _line.image = [UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/scan_line_portrait.png"];
         _line.contentMode = UIViewContentModeScaleAspectFill;
         [self addSubview:_line];
         _line.transform = transform;

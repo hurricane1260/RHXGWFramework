@@ -493,7 +493,7 @@ kRhPCopy NSString * client_id;
 
 - (void)setUIControls
 {
-    [switchCameraBtn setBackgroundImage:[UIImage imageNamed:@"Icon_camera_w_b"] forState:UIControlStateSelected];
+    [switchCameraBtn setBackgroundImage:[UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/Icon_camera_w_b"] forState:UIControlStateSelected];
     
 //    //Local View line
 //    theLocalView.layer.borderColor = [[UIColor whiteColor] CGColor];

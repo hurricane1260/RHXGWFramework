@@ -41,7 +41,8 @@ kRhPStrong NSMutableArray * bankViewArr;
 
 - (void)initSubviews{
     for (int i = 0; i < self.imgArray.count; i++) {
-        SingleBankView * bankView = [[SingleBankView alloc] initHorizontalWithImg:[UIImage imageNamed:self.imgArray[i]] withTitle:self.bankArr[i]];
+        NSString *bankName = [NSString stringWithFormat:@"Frameworks/RHXGWFramework.framework/%@",self.imgArray[i]];
+        SingleBankView * bankView = [[SingleBankView alloc] initHorizontalWithImg:[UIImage imageNamed:bankName] withTitle:self.bankArr[i]];
         [self addSubview:bankView];
         [self.bankViewArr addObject:bankView];
     }
