@@ -107,7 +107,7 @@
     //获取“身份证正面”按钮
     frontBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [frontBtn setBackgroundColor:[UIColor clearColor]];
-    [frontBtn setBackgroundImage:[UIImage imageNamed:@"click_camera_btn"] forState:UIControlStateNormal];
+    [frontBtn setBackgroundImage:[UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/click_camera_btn"] forState:UIControlStateNormal];
     CGRect frontFrame = CGRectMake(SCREEN_WIDTH - 50, lastY + 40, 40, 30);
     frontBtn.frame = frontFrame;
     frontBtn.tag = FRONT_TAG;
@@ -253,7 +253,7 @@
     //    [backBtn setTitle:@"backBtn" forState:UIControlStateNormal];
     //    [[backBtn titleLabel] setFont:[UIFont systemFontOfSize:15.0]];
     //    [backBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"click_camera_btn"] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/click_camera_btn"] forState:UIControlStateNormal];
     CGRect backFrame = CGRectMake(SCREEN_WIDTH - 50, lastY, 40, 30);
     backBtn.frame = backFrame;
     backBtn.tag = BACK_TAG;

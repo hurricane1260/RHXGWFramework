@@ -58,7 +58,7 @@ kRhPStrong UIButton * coverBtn;
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    UIImage * image = [UIImage imageNamed:@"icon_nonclick_survey-1"];
+    UIImage * image = [UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/icon_nonclick_survey-1"];
     self.selectBtn.frame = CGRectMake(24.0f, 0, image.size.width, image.size.height);
     //增加文本间距
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc]init];

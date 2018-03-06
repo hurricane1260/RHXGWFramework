@@ -104,6 +104,9 @@ static UIImage *originImg;
         
         //get IDCardInfo
         nStatus = EXCARDS_RecoIDCardImageRGBA32ST(pdata, (int)width, (int)height, (int)width*4, 1, &idcard);
+        
+//        NSLog(@"--%s,%d",__func__,nStatus);
+        
         if(nStatus >= 0)
         {
             NSStringEncoding gbkEncoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
@@ -191,7 +194,7 @@ static UIImage *originImg;
         //释放图像
         EXCARDS_FreeIDCardST(&idcard);
         free(pdata);
-        
+//        NSLog(@"%s,%@,%@,%@,%@,%@,%@",__func__,idInfo.code,idInfo.name,idInfo.gender,idInfo.address,idInfo.issue,idInfo.valid);
         if (idInfo !=nil && [idInfo isOK]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.indicator stopAnimating];
@@ -238,7 +241,13 @@ static UIImage *originImg;
         originImg = image;
         if (!init_flag)
         {
-            const char *thePath = [[[NSBundle mainBundle] resourcePath] UTF8String];
+            
+//            const char *thePath = [[[NSBundle mainBundle] resourcePath] UTF8String];
+            
+            NSString *frameWorkPath = [NSString stringWithFormat:@"%@/RHXGWFramework.framework",[[NSBundle mainBundle]privateFrameworksPath]];
+            const char *thePath = [frameWorkPath UTF8String];
+            
+//            NSLog(@"thePath ==== %s",thePath);
             int ret = EXCARDS_Init(thePath);
             if (ret != 0)
             {

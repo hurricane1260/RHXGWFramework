@@ -131,8 +131,8 @@ kRhPAssign BOOL canCa;
     [self.cancelBtn addTarget:self action:@selector(cancelPhotograph:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.cancelBtn];
     
-    self.photographBtn = [UIButton didBuildButtonWithNormalImage:[UIImage imageNamed:@"photograph"] highlightImage:[UIImage imageNamed:@"photograph_Select"]];
-    [self.photographBtn setImage:[UIImage imageNamed:@"photograph_Select"] forState:UIControlStateSelected];
+    self.photographBtn = [UIButton didBuildButtonWithNormalImage:[UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/photograph"] highlightImage:[UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/photograph_Select"]];
+    [self.photographBtn setImage:[UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/photograph_Select"] forState:UIControlStateSelected];
     [self.photographBtn addTarget:self action:@selector(beginPhotograph:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.photographBtn];
     

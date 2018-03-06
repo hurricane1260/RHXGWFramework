@@ -3660,13 +3660,13 @@
 		5C8EC358201070E1001A1DF5 /* camera */ = {
 			isa = PBXGroup;
 			children = (
-				5C8EC359201070E1001A1DF5 /* IDFrameView.h */,
+				5C8EC35E201070E1001A1DF5 /* IDCameraController.h */,
 				5C8EC35A201070E1001A1DF5 /* IDCameraController.m */,
 				5C8EC35B201070E1001A1DF5 /* IDContextManager.h */,
-				5C8EC35C201070E1001A1DF5 /* IDImageTarget.h */,
-				5C8EC35D201070E1001A1DF5 /* IDFrameView.m */,
-				5C8EC35E201070E1001A1DF5 /* IDCameraController.h */,
 				5C8EC35F201070E1001A1DF5 /* IDContextManager.m */,
+				5C8EC359201070E1001A1DF5 /* IDFrameView.h */,
+				5C8EC35D201070E1001A1DF5 /* IDFrameView.m */,
+				5C8EC35C201070E1001A1DF5 /* IDImageTarget.h */,
 			);
 			path = camera;
 			sourceTree = "<group>";
@@ -3674,10 +3674,10 @@
 		5C8EC365201070E1001A1DF5 /* photo */ = {
 			isa = PBXGroup;
 			children = (
-				5C8EC366201070E1001A1DF5 /* IDPhoto.h */,
 				5C8EC367201070E1001A1DF5 /* IDCardPhotoViewController.h */,
-				5C8EC368201070E1001A1DF5 /* IDPhoto.m */,
 				5C8EC369201070E1001A1DF5 /* IDCardPhotoViewController.m */,
+				5C8EC366201070E1001A1DF5 /* IDPhoto.h */,
+				5C8EC368201070E1001A1DF5 /* IDPhoto.m */,
 			);
 			path = photo;
 			sourceTree = "<group>";

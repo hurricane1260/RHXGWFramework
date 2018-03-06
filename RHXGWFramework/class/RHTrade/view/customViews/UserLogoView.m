@@ -129,8 +129,10 @@
         }
         else
         {
+            logoUrl = [NSString stringWithFormat:@"Frameworks/RHXGWFramework.framework/%@",logoUrl];
             self.logoImgView.image = [UIImage imageNamed:logoUrl];
             if (self.logoImgView.image == nil) {
+                defaultLogoUrl = [NSString stringWithFormat:@"Frameworks/RHXGWFramework.framework/%@",defaultLogoUrl];
                 self.logoImgView.image = [UIImage imageNamed:defaultLogoUrl];
                 
             }
@@ -142,17 +144,20 @@
         NSURL *imgUrl = [NSURL URLWithString:logoUrl];
         if ([logoUrl hasPrefix:@"http"]||[logoUrl hasPrefix:@"https"])
         {
+            defaultLogoUrl = [NSString stringWithFormat:@"Frameworks/RHXGWFramework.framework/%@",defaultLogoUrl];
             [self.logoImgView sd_setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:defaultLogoUrl] options:SDWebImageLowPriority | SDWebImageDelayPlaceholder];
         }
         else
         {
             if ([self isStringEmpty:logoUrl]) {
-                
+                defaultLogoUrl = [NSString stringWithFormat:@"Frameworks/RHXGWFramework.framework/%@",defaultLogoUrl];
                 [self.logoImgView sd_setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:defaultLogoUrl]];
 
             }else{
+                logoUrl = [NSString stringWithFormat:@"Frameworks/RHXGWFramework.framework/%@",logoUrl];
                 self.logoImgView.image = [UIImage imageNamed:logoUrl];
                 if (self.logoImgView.image == nil) {
+                    defaultLogoUrl = [NSString stringWithFormat:@"Frameworks/RHXGWFramework.framework/%@",defaultLogoUrl];
                     self.logoImgView.image = [UIImage imageNamed:defaultLogoUrl];
 
                 }

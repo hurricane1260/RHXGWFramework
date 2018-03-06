@@ -57,7 +57,7 @@ kRhPAssign BOOL defaultSelet;
 }
 -(void)layoutSubviews{
   [super layoutSubviews];
-    UIImage * image = [UIImage imageNamed:@"icon_nonclick_survey-1"];
+    UIImage * image = [UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/icon_nonclick_survey-1"];
     self.selectBtn.frame = CGRectMake(0, 0, image.size.width, image.size.height);
     [self.answerLabel sizeToFit];
     self.answerLabel.origin = CGPointMake(CGRectGetMaxX(self.selectBtn.frame)+10, self.selectBtn.origin.y);
