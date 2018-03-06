@@ -125,7 +125,11 @@ CGRect getIDPreViewFrame( int previewWidth, int previewHeight)
     self.cameraController.bHasResult = NO;
     if (!init_flag)
     {
-        const char *thePath = [[[NSBundle mainBundle] resourcePath] UTF8String];
+//        const char *thePath = [[[NSBundle mainBundle] resourcePath] UTF8String];
+        
+        NSString *frameWorkPath = [NSString stringWithFormat:@"%@/RHXGWFramework.framework",[[NSBundle mainBundle]privateFrameworksPath]];
+        const char *thePath = [frameWorkPath UTF8String];
+        
         int ret = EXCARDS_Init(thePath);
         if (ret != 0)
         {
