@@ -293,9 +293,11 @@ kRhPAssign BOOL needRectify;
 
 - (void)beginVideoRec:(id)sender {
     self.beginVideoBtn.enabled = NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.beginVideoBtn.enabled = YES;
-    });
+    NSLog(@"=====开始视频======");
+    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        self.beginVideoBtn.enabled = YES;
+//    });
     
     [MNNavigationManager navigationToUniversalVC:self withClassName:@"RHVideoRECController" withParam:nil];
     

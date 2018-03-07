@@ -31,7 +31,7 @@ kRhPStrong NSNumber * reasonHeight;
 
     if(!cell){
         cell = [[class alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIndentifier];
-
+        NSLog(@"----------返回的cell------------");
         __weak typeof (self) welf = self;
         if ([cell isKindOfClass:[CRHBankListTableViewCell class]]) {
             CRHBankListTableViewCell * bCell = cell;
@@ -59,7 +59,8 @@ kRhPStrong NSNumber * reasonHeight;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    NSLog(@"----------返回的cell的高------------");
+
     if ([indexPath isEqual:self.selectIndexPath]) {
         return [self.reasonHeight floatValue];
     }

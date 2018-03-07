@@ -13,4 +13,6 @@
 
 kRhPCopy ButtonCallBackWithParams heightCallBack;
 
+- (void)loadDataWithModel:(id)model;
+
 @end

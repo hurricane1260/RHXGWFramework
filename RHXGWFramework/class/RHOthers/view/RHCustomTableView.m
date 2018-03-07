@@ -150,6 +150,7 @@ kRhPStrong UILabel * hintLabel;
         _dataList = arr[0];
         [self computeTableViewHeight];
         _tabDataSource.dataList = _dataList;
+        NSLog(@"--------%@--------",_dataList);
         
     }
     else if(arr.count == 2){

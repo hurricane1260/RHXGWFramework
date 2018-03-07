@@ -121,7 +121,7 @@
     BaseViewController * universalVC = [[class alloc] init];
     universalVC.universalParam = param;
     [currentController.navigationController pushViewController:universalVC animated:YES];
-    
+
 }
 /*
 + (void)presentModalVcWithClassName:(NSString *)className withParam:(id)aParam{

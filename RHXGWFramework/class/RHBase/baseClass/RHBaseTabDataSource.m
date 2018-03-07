@@ -54,6 +54,7 @@ kRhPAssign CGFloat reasonHeight;
         else{
             model = self.dataList[indexPath.section][indexPath.row];
         }
+        NSLog(@"-----cell赋值了--------");
         [retCell loadDataWithModel:model];
         return;
     }
@@ -103,6 +104,8 @@ kRhPAssign CGFloat reasonHeight;
     else{
         count = [(NSArray *)self.dataList[section] count];
     }
+    NSLog(@"-----cell个数--------");
+
     return count;
 }
 

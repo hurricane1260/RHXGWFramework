@@ -293,6 +293,7 @@ static int requestNum = 0;
     __weak typeof (self) welf = self;
     [self.manager sendCommonRequestWithParam:param withRequestType:kBeginVideoRequest withUrlString:@"crhBeginVideoRequest" withCompletion:^(BOOL success, id resultData) {
         if (success) {
+            NSLog(@"视频请求成功");
             [welf requestConnectInfo];
         }
     }];

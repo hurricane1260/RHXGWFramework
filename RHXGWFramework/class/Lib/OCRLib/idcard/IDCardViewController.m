@@ -110,6 +110,13 @@ CGRect getIDPreViewFrame( int previewWidth, int previewHeight)
         self.bDoubleCheck = NO;
     }
 }
+-(instancetype)init{
+    self = [super initWithNibName:@"Frameworks/RHXGWFramework.framework/IDCardViewController" bundle:nil];
+    if (self) {
+        
+    }
+    return self;
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {

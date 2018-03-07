@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface RHBankListController : BaseViewController
+@interface RHBankListController : BaseViewController 
 
 @end
