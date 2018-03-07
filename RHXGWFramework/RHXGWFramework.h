@@ -30,4 +30,5 @@ FOUNDATION_EXPORT const unsigned char RHXGWFrameworkVersionString[];
 #import <RHXGWFramework/SKCodeItemVO.h>
 #import <RHXGWFramework/SKBaseVO.h>
 #import <RHXGWFramework/SKUtils.h>
-
+#import <RHXGWFramework/AnyChatPlatform.h>
+#import <RHXGWFramework/AnyChatDefine.h>

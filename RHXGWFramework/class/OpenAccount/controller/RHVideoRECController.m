@@ -104,6 +104,9 @@ static int requestNum = 0;
 
 - (instancetype)init{
     if (self = [super init]) {
+        
+//        NSLog(@"%s",__func__);
+        
         self.view.backgroundColor = color1_text_xgw;
         self.title = @"视频录制";
 
@@ -122,6 +125,7 @@ static int requestNum = 0;
         
         [self requestBeginVideo];
 
+        
     }
 
     return self;
@@ -159,6 +163,9 @@ static int requestNum = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    NSLog(@"%s",__func__);
+    
     [self initSubviews];
 
     [self initAnychatPlatform];
@@ -178,6 +185,8 @@ static int requestNum = 0;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+//    NSLog(@"---%s",__func__);
     
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"kQuiteVideoNoti" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quiteVideoWithLinkClose) name:@"kQuiteVideoNoti" object:nil];
@@ -211,7 +220,7 @@ static int requestNum = 0;
 }
 
 - (void)initSubviews{
-    
+//    NSLog(@"1%s",__func__);
 //    //得到图片的路径
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"recloading" ofType:@"gif"];
 //    //将图片转为NSData
@@ -230,7 +239,7 @@ static int requestNum = 0;
 //    [self.webView loadData:gifData MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
     
     //得到图片的路径
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"recloading" ofType:@"gif"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Frameworks/RHXGWFramework.framework/recloading" ofType:@"gif"];
     //创建一个第三方的View显示图片
     self.dataView = [[GifView alloc] initWithFrame:CGRectMake(0, 185.0f, 96, 148) filePath:path];
     [self.view addSubview:self.dataView];
@@ -245,6 +254,8 @@ static int requestNum = 0;
     self.cancelBtn = [UIButton didBuildOpenAccNextBtnWithTitle:@"挂断"];
     [self.cancelBtn addTarget: self action:@selector(cancelVideo) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.cancelBtn];
+    
+//    NSLog(@"2%s",__func__);
 }
 
 - (void)viewWillLayoutSubviews{
@@ -277,7 +288,7 @@ static int requestNum = 0;
 }
 
 - (void)requestBeginVideo{
-  
+//    NSLog(@"%s",__func__);
     if (!self.client_id.length) {
         return;
     }
@@ -290,6 +301,7 @@ static int requestNum = 0;
     [param setObject:@"1.2.20141029" forKey:@"version"];
     [param setObject:@0 forKey:@"fromServer"];
     
+//    NSLog(@"%s,%@",__func__,param);
     __weak typeof (self) welf = self;
     [self.manager sendCommonRequestWithParam:param withRequestType:kBeginVideoRequest withUrlString:@"crhBeginVideoRequest" withCompletion:^(BOOL success, id resultData) {
         if (success) {
@@ -415,6 +427,8 @@ static int requestNum = 0;
         _anyChat = [AnyChatPlatform new];
     }
     return _anyChat;
+    
+    NSLog(@"%s",__func__);
 }
 
 - (void)initAnychatPlatform{

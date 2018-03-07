@@ -46,6 +46,10 @@
         asiRequest = [[ASIFormDataRequest alloc] initWithURL:url];
     }else if(self.requestMethod == HTTRequestPOST){
         NSURL *url = [[NSURL alloc] initWithString:self.urlString];
+        
+//        NSLog(@"%s,%@",__func__,self.urlString);
+        
+//        NSURL *url = [NSURL URLWithString:self.urlString];
         asiRequest = [[ASIFormDataRequest alloc] initWithURL:url];
             //[self addRequestHeader:@"Content-Type" value:[NSString stringWithFormat:@"application/json; charset=%@",charset]];
         [HTTPRequestParamFactory didBuildRequestPostParamWith:asiRequest reqParam:self.reqParam];

@@ -356,6 +356,7 @@
 		5C2B407D2004729300175BFD /* ITableDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C2B3E7B2004729200175BFD /* ITableDataSource.h */; };
 		5C2B407E2004729300175BFD /* ITableHeaderItemView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C2B3E7C2004729200175BFD /* ITableHeaderItemView.h */; };
 		5C2B4080200473E300175BFD /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = 5C2B407F200473E300175BFD /* PrefixHeader.pch */; };
+		5C3AA56E204FFCDD004286DF /* recloading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5C3AA56D204FFCDD004286DF /* recloading.gif */; };
 		5C650DCE2005F704000D1E11 /* UIView+RXJX_Inc_CustomUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C650DCC2005F704000D1E11 /* UIView+RXJX_Inc_CustomUI.h */; };
 		5C650DCF2005F704000D1E11 /* UIView+RXJX_Inc_CustomUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C650DCD2005F704000D1E11 /* UIView+RXJX_Inc_CustomUI.m */; };
 		5C650DD22005F849000D1E11 /* WebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C650DD02005F848000D1E11 /* WebViewController.h */; };
@@ -925,8 +926,8 @@
 		5C8EC39C201070E1001A1DF5 /* IDCardResultViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C8EC36A201070E1001A1DF5 /* IDCardResultViewController.h */; };
 		5C8EC39D201070E1001A1DF5 /* ydbs.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8EC36B201070E1001A1DF5 /* ydbs.png */; };
 		5C8EC3A4201070FA001A1DF5 /* AnyChatErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C8EC3A0201070FA001A1DF5 /* AnyChatErrorCode.h */; };
-		5C8EC3A5201070FA001A1DF5 /* AnyChatPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C8EC3A1201070FA001A1DF5 /* AnyChatPlatform.h */; };
-		5C8EC3A6201070FA001A1DF5 /* AnyChatDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C8EC3A2201070FA001A1DF5 /* AnyChatDefine.h */; };
+		5C8EC3A5201070FA001A1DF5 /* AnyChatPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C8EC3A1201070FA001A1DF5 /* AnyChatPlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5C8EC3A6201070FA001A1DF5 /* AnyChatDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C8EC3A2201070FA001A1DF5 /* AnyChatDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C8EC3A7201070FA001A1DF5 /* AnyChatObjectDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C8EC3A3201070FA001A1DF5 /* AnyChatObjectDefine.h */; };
 		5C8EC3AE20107771001A1DF5 /* RHLabelAttributeTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C8EC3AC20107770001A1DF5 /* RHLabelAttributeTool.h */; };
 		5C8EC3AF20107771001A1DF5 /* RHLabelAttributeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8EC3AD20107770001A1DF5 /* RHLabelAttributeTool.m */; };
@@ -1418,6 +1419,7 @@
 		5C2B3E7B2004729200175BFD /* ITableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITableDataSource.h; sourceTree = "<group>"; };
 		5C2B3E7C2004729200175BFD /* ITableHeaderItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITableHeaderItemView.h; sourceTree = "<group>"; };
 		5C2B407F200473E300175BFD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		5C3AA56D204FFCDD004286DF /* recloading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = recloading.gif; sourceTree = "<group>"; };
 		5C650DCC2005F704000D1E11 /* UIView+RXJX_Inc_CustomUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RXJX_Inc_CustomUI.h"; sourceTree = "<group>"; };
 		5C650DCD2005F704000D1E11 /* UIView+RXJX_Inc_CustomUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RXJX_Inc_CustomUI.m"; sourceTree = "<group>"; };
 		5C650DD02005F848000D1E11 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -3139,6 +3141,7 @@
 				5C8EC43E201091BA001A1DF5 /* icon_add_right@3x.png */,
 				5C8EC4B62010944A001A1DF5 /* img_photo@2x.png */,
 				5C8EC4B72010944A001A1DF5 /* img_photo@3x.png */,
+				5C3AA56D204FFCDD004286DF /* recloading.gif */,
 				5C8EC4B22010942F001A1DF5 /* icon_codenoeyes@2x.png */,
 				5C8EC4B320109430001A1DF5 /* icon_codenoeyes@3x.png */,
 				5C8EC4AE20109420001A1DF5 /* icon_codeeyes@2x.png */,
@@ -3756,6 +3759,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C8EC3A6201070FA001A1DF5 /* AnyChatDefine.h in Headers */,
+				5C8EC3A5201070FA001A1DF5 /* AnyChatPlatform.h in Headers */,
 				5C2B40112004729300175BFD /* SKUtils.h in Headers */,
 				5C2B40012004729300175BFD /* SKBaseVO.h in Headers */,
 				5C2B3FFA2004729300175BFD /* SKCodeItemVO.h in Headers */,
@@ -3768,7 +3773,6 @@
 				5C2B40122004729300175BFD /* SKCodeTable.h in Headers */,
 				5C2B40292004729300175BFD /* STKManager.h in Headers */,
 				5C2B40272004729300175BFD /* STKAddress.h in Headers */,
-				5C8EC3A5201070FA001A1DF5 /* AnyChatPlatform.h in Headers */,
 				5C2B3FE02004729300175BFD /* AsyncSocket.h in Headers */,
 				5C2B407C2004729300175BFD /* CMHttpURLManager.h in Headers */,
 				5C8EC04A200DCA18001A1DF5 /* TradeController.h in Headers */,
@@ -3996,7 +4000,6 @@
 				5C650E4120060EA1000D1E11 /* SDCollectionViewCell.h in Headers */,
 				5C8EC31120106FFF001A1DF5 /* CRHOpenAccResultVo.h in Headers */,
 				5C650E5E20062349000D1E11 /* AccountTokenDataStore.h in Headers */,
-				5C8EC3A6201070FA001A1DF5 /* AnyChatDefine.h in Headers */,
 				5C8EC085200DCA18001A1DF5 /* BuyAndSellPriceListCell.h in Headers */,
 				5C8EC073200DCA18001A1DF5 /* TradeStockHeadView.h in Headers */,
 				5C2B3F392004729200175BFD /* CMComponent.h in Headers */,
@@ -4409,6 +4412,7 @@
 				5C8EC3D720108D8A001A1DF5 /* img_kaihu_transaction@2x.png in Resources */,
 				5C8EC4B520109430001A1DF5 /* icon_codenoeyes@3x.png in Resources */,
 				5C8EC476201092F1001A1DF5 /* icon_bank_zx@2x.png in Resources */,
+				5C3AA56E204FFCDD004286DF /* recloading.gif in Resources */,
 				5C8EC11E20104512001A1DF5 /* ic_jiaoyi_sell_nor@3x.png in Resources */,
 				5C8EC46C201092F1001A1DF5 /* icon_bank_xy@3x.png in Resources */,
 				5C8EC12A20104585001A1DF5 /* 03_rocket@3x.png in Resources */,

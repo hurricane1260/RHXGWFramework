@@ -373,7 +373,10 @@ kRhPStrong NSMutableArray * resultArr;
 //    request.reqParam = aParam;
     request.requestMethod = HTTRequestPOST;
     request.requestType = HTTPRequestAsynchronous;
-    __block typeof(self) welf = self;
+    __weak typeof(self) welf = self;
+    
+//    NSLog(@"%s,%@",__func__,request.urlString);
+    
     [request sendCRHRequestWithSuccessBlock:^(id data) {
         
         if ([self isCRHValidData:data]) {

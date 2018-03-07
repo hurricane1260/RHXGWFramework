@@ -117,6 +117,7 @@
 //}
 
 + (void)navigationToUniversalVC:(UIViewController *)currentController withClassName:(NSString *)className withParam:(id)param{
+//    NSLog(@"%s",__func__);
     Class class = NSClassFromString(className);
     BaseViewController * universalVC = [[class alloc] init];
     universalVC.universalParam = param;
