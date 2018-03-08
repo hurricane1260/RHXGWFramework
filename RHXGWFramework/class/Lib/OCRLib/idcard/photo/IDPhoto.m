@@ -27,7 +27,7 @@
 @synthesize target;
 @synthesize delegate;
 static IdInfo *idInfo;
-static Boolean init_flag = false;
+//static Boolean init_flag = false;
 static UIImage *originImg;
 
 - (instancetype)init
@@ -105,7 +105,7 @@ static UIImage *originImg;
         //get IDCardInfo
         nStatus = EXCARDS_RecoIDCardImageRGBA32ST(pdata, (int)width, (int)height, (int)width*4, 1, &idcard);
         
-//        NSLog(@"--%s,%d",__func__,nStatus);
+        NSLog(@"--%s,%d",__func__,nStatus);
         
         if(nStatus >= 0)
         {
@@ -194,7 +194,7 @@ static UIImage *originImg;
         //释放图像
         EXCARDS_FreeIDCardST(&idcard);
         free(pdata);
-//        NSLog(@"%s,%@,%@,%@,%@,%@,%@",__func__,idInfo.code,idInfo.name,idInfo.gender,idInfo.address,idInfo.issue,idInfo.valid);
+        NSLog(@"%s,%@,%@,%@,%@,%@,%@",__func__,idInfo.code,idInfo.name,idInfo.gender,idInfo.address,idInfo.issue,idInfo.valid);
         if (idInfo !=nil && [idInfo isOK]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.indicator stopAnimating];
@@ -239,31 +239,37 @@ static UIImage *originImg;
         NSLog(@"found an image");
         NSLog(@"image ==== %@",image);
         originImg = image;
-        if (!init_flag)
-        {
-            
+//        if (!init_flag)
+//        {
+//
+//
+//            init_flag = true;
+//        }
+//        if (init_flag) {
+//
+//
+//        }
+        
 //            const char *thePath = [[[NSBundle mainBundle] resourcePath] UTF8String];
-            
-            NSString *frameWorkPath = [NSString stringWithFormat:@"%@/RHXGWFramework.framework",[[NSBundle mainBundle]privateFrameworksPath]];
-            const char *thePath = [frameWorkPath UTF8String];
-            
-//            NSLog(@"thePath ==== %s",thePath);
-            int ret = EXCARDS_Init(thePath);
-            if (ret != 0)
-            {
-                NSLog(@"Init Failed!ret=[%d]", ret);
-            }
-            init_flag = true;
+        
+        NSString *frameWorkPath = [NSString stringWithFormat:@"%@/RHXGWFramework.framework",[[NSBundle mainBundle]privateFrameworksPath]];
+        const char *thePath = [frameWorkPath UTF8String];
+        
+        NSLog(@"thePath ==== %s",thePath);
+        int ret = EXCARDS_Init(thePath);
+        if (ret != 0)
+        {
+            NSLog(@"Init Failed!ret=[%d]", ret);
         }
-        if (init_flag) {
-            [self.indicator startAnimating];
-            self.promptView.hidden = NO;
-            self.backgroundView.hidden = NO;
-            target.view.userInteractionEnabled = NO;
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [self doRec:image];
-            });
-        }
+        
+        [self.indicator startAnimating];
+        self.promptView.hidden = NO;
+        self.backgroundView.hidden = NO;
+        target.view.userInteractionEnabled = NO;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self doRec:image];
+        });
+        
     }
     [target dismissModalViewControllerAnimated:YES];
 }
