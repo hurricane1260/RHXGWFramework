@@ -115,6 +115,8 @@ kRhPAssign BOOL needRectify;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.questionreVisitTableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+
     if (self.returnVisitArr.count==0) {
         [self requestReturnVisitPaper];
 
@@ -127,7 +129,19 @@ kRhPAssign BOOL needRectify;
     
     [self.requestManager cancelAllDelegate];
     [self.returnVisitManager cancelAllDelegate];
+     [self.questionreVisitTableView removeObserver:self forKeyPath:@"contentSize"];
 }
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    // 方式1.匹配keypath
+    if ([keyPath isEqualToString:@"contentSize"]) {
+        self.questionreVisitTableView.frame = CGRectMake(0, 10, kDeviceWidth, self.questionreVisitTableView.contentSize.height);
+         self.bgScrollView.contentSize = CGSizeMake(kDeviceWidth, self.questionreVisitTableView.contentSize.height+10);
+    }
+    
+    
+}
+
 
 -(void)requestReturnVisitPaper{
     [self.returnVisitArr removeAllObjects];
