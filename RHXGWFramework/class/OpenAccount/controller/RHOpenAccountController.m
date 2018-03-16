@@ -248,6 +248,7 @@ kRhPStrong NSString * short_url;
 //    [self.setView addGestureRecognizer:tap1];
     self.setView.clickCallBack = ^(NSDictionary * param){
         if ([param objectForKey:@"row"]) {
+            NSLog(@"点击了Row");
             [welf showSetting];
             [welf didSelectItemWith:[param objectForKey:@"row"]];
         }
@@ -631,6 +632,7 @@ kRhPStrong NSString * short_url;
 }
 
 - (void)didSelectItemWith:(NSNumber *)index{
+    NSLog(@"点击了跳转开户");
     switch ([index integerValue]) {
         case 0:
             //清理缓存

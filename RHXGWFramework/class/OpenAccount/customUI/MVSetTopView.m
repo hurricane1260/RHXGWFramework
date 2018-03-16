@@ -13,6 +13,8 @@
 @interface MVSetTopView ()<RHBaseTableViewDelegate>
 
 kRhPStrong RHCustomTableView * setTableView;
+/**由于打成frameWork后  */
+//kRhPStrong UITableView *
 
 kRhPStrong UIImageView * img;
 
@@ -70,6 +72,7 @@ kRhPStrong UIView * backView;
 }
 
 -(void)didSelectWithIndexPath:(id)data{
+    NSLog(@"点击了列表");
     if (!data || ![data isKindOfClass:[NSIndexPath class]]) {
         return;
     }

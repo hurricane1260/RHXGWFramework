@@ -13,9 +13,8 @@
 
 #import "OARequestManager.h"
 #import "BankListDataSource.h"
-#import "CRHBankListTableViewCell.h"
 
-@interface RHBankListController ()<RHBaseTableViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface RHBankListController ()<RHBaseTableViewDelegate>
 
 kRhPStrong RHCustomTableView * tableView;
 
@@ -24,9 +23,6 @@ kRhPStrong BankListDataSource * dataSource;
 kRhPStrong NSArray * bankList;
 
 kRhPStrong OARequestManager * oAManager;
-
-@property (nonatomic,strong)UITableView * bankListTableView;
-@property (nonatomic,strong)NSMutableArray * bankListArray;
 @end
 
 @implementation RHBankListController
@@ -38,22 +34,12 @@ kRhPStrong OARequestManager * oAManager;
     }
     return self;
 }
--(NSMutableArray *)bankListArray{
-    if (!_bankListArray) {
-        _bankListArray = [NSMutableArray array];
-        
-    }
-    return _bankListArray;
-}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self initSubviews];
     
-//    if (!self.bankList.count || !self.bankList) {
-//        [self requestToBankList];
-//    }
-    if (!self.bankListArray.count || !self.bankListArray) {
+    if (!self.bankList.count || !self.bankList) {
         [self requestToBankList];
     }
     
@@ -62,59 +48,48 @@ kRhPStrong OARequestManager * oAManager;
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.oAManager cancelAllDelegate];
-    
+
 }
 
 - (void)setUniversalParam:(id)universalParam{
     if (!universalParam || ![universalParam isKindOfClass:[NSArray class]]) {
         return;
     }
-//    self.bankList = universalParam;
-    self.bankListArray = universalParam;
+    self.bankList = universalParam;
 }
 
 - (void)initSubviews{
     
-//    __weak typeof(self) welf = self;
-    
-    
-    self.bankListTableView = [[UITableView alloc]init];
-    self.bankListTableView.delegate = self;
-    self.bankListTableView.dataSource = self;
-    self.bankListTableView.rowHeight = 43.0f;
-    self.bankListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.bankListTableView];
-     [self.bankListTableView registerClass:[CRHBankListTableViewCell class] forCellReuseIdentifier:@"CRHBankListTableViewCell"];
-//    self.tableView = [[RHCustomTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-//    self.tableView.tabDataSource = self.dataSource;
-//    [self.tableView loadSettingWithDataList:self.bankList withHeight:43.0f withGapHeight:0.5f withCellName:@"CRHBankListTableViewCell" withCellID:@"bankCellId"];
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    self.tableView.heightCallBack = ^(NSDictionary * param){
-//        if ([param objectForKey:@"height"]) {
-//            welf.tableView.height = [[param objectForKey:@"height"] floatValue];
-//            [welf.view setNeedsLayout];
-//        }
-//    };
-//    self.tableView.customDelegate = self;
-//    [self.view addSubview:self.tableView];
+    __weak typeof(self) welf = self;
+    self.tableView = [[RHCustomTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.tabDataSource = self.dataSource;
+    [self.tableView loadSettingWithDataList:self.bankList withHeight:43.0f withGapHeight:0.5f withCellName:@"CRHBankListTableViewCell" withCellID:@"bankCellId"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.heightCallBack = ^(NSDictionary * param){
+        if ([param objectForKey:@"height"]) {
+            welf.tableView.height = [[param objectForKey:@"height"] floatValue];
+            [welf.view setNeedsLayout];
+        }
+    };
+    self.tableView.customDelegate = self;
+    [self.view addSubview:self.tableView];
 }
 
 - (BankListDataSource *)dataSource{
-    
+    __weak typeof(self) welf = self;
+
     if (!_dataSource) {
         _dataSource = [[BankListDataSource alloc] init];
-        
+
     }
     return _dataSource;
 }
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-//    self.tableView.contentSize = CGSizeMake(self.tableView.width, self.tableView.height);
-//    self.tableView.frame = CGRectMake(0, self.layoutStartY, self.view.width, self.view.height - self.layoutStartY);
-    self.bankListTableView.frame = CGRectMake(0, self.layoutStartY, self.view.width, self.view.height - self.layoutStartY);
+    self.tableView.contentSize = CGSizeMake(self.tableView.width, self.tableView.height);
+    self.tableView.frame = CGRectMake(0, self.layoutStartY, self.view.width, self.view.height - self.layoutStartY);
 
-    
 }
 
 - (void)didSelectWithData:(id)data{
@@ -144,10 +119,8 @@ kRhPStrong OARequestManager * oAManager;
             }
             NSArray * arr = resultData;
             if (arr.count) {
-//                welf.bankList = resultData;
-//                [welf.tableView reloadDataWithData:@[welf.bankList]];
-                welf.bankListArray = resultData;
-                [welf.bankListTableView reloadData];
+                welf.bankList = resultData;
+                [welf.tableView reloadDataWithData:@[welf.bankList]];
                 [welf.view setNeedsLayout];
             }
         }
@@ -159,22 +132,6 @@ kRhPStrong OARequestManager * oAManager;
     
     
 }
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CRHBankListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CRHBankListTableViewCell"];
-    if (self.bankListArray.count!=0) {
-        [cell loadDataWithModel:self.bankListArray[indexPath.row]];
-    }
-    return cell;
-   
-}
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.bankListArray.count;
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kBankSelectNoti" object:self.bankListArray[indexPath.row]];
-    [self.navigationController popViewControllerAnimated:YES];
-    
-    
-}
+
 @end

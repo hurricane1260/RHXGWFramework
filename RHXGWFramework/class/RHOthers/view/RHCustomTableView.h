@@ -11,10 +11,14 @@
 
 @protocol RHBaseTableViewDelegate <NSObject>
 
+@optional
 - (void)changeTabViewHeight:(CGFloat)height;
 
 - (void)didSelectWithData:(id)data;
 
+- (void)didSelectWithIndexPath:(id)data;
+
+- (void)loadNextPage;
 @end
 
 @interface RHCustomTableView : UITableView
@@ -42,6 +46,9 @@ kRhPStrong NSString * hintText;
 
 - (void)setTabHeaderViewWithHeaderList:(NSArray *)headerList withHeight:(CGFloat)height withHeaderViewName:(NSString *)headerName withHeadId:(NSString *)headerId;
 
+/*
+ group 刷新方法 传入数组@[列表数组，head数组]
+ **/
 - (void)reloadDataWithData:(id)data;
 
 - (void)setHintViewHidden:(BOOL)hidden;
