@@ -85,6 +85,8 @@ kRhPAssign BOOL hasGetVerifyCode;
 
 //渠道号
 kRhPStrong NSString * short_url;
+//佣金
+kRhPStrong NSString * commission;
 @end
 
 @implementation RHOpenAccountController
@@ -149,6 +151,11 @@ kRhPStrong NSString * short_url;
         if ([dic objectForKey:@"short_url"]) {
             self.short_url = [dic objectForKey:@"short_url"];
         }
+        if ([dic objectForKey:@"commission"]) {
+            self.commission = [dic objectForKey:@"commission"];
+        }
+
+        
     }
     
 }
@@ -366,6 +373,9 @@ kRhPStrong NSString * short_url;
             [RHOpenAccStoreData storeOpenAccCachUserInfo:welf.verifyView.userNameTextField.text withKey:kOpenAccMobile];
             if (welf.short_url.length) {
                 [RHOpenAccStoreData storeOpenAccCachUserInfo:welf.short_url withKey:@"short_url"];
+            }
+            if (welf.commission.length) {
+                [RHOpenAccStoreData storeOpenAccCachUserInfo:welf.commission withKey:@"commission"];
             }
             if ([vo.is_first_reg boolValue]) {
                 

@@ -508,7 +508,7 @@ kRhPAssign BOOL needRectify;
             }else if ([self.userEducation isEqualToString:@"本科"]){
                 education = @"3";
 
-            }else if ([self.userEducation isEqualToString:@"专科"]){
+            }else if ([self.userEducation isEqualToString:@"专科"]||[self.userEducation isEqualToString:@"大专"]){
                 education = @"2";
                 
             }else {
