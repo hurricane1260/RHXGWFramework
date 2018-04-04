@@ -487,6 +487,9 @@ kRhPStrong NSMutableArray * resultArr;
             case kRiskMatchCheck:
                 self.commonCallBack(NO,resultData);
                 break;
+            case kUploadPersonRevenue:
+                self.commonCallBack(NO,resultData);
+                break;
 
                 
                 
@@ -554,6 +557,10 @@ kRhPStrong NSMutableArray * resultArr;
             self.commonCallBack(YES,resultData);
             break;
         case kCheckCanOpenAcc:
+            self.commonCallBack(YES,resultData);
+            break;
+            
+        case kUploadPersonRevenue:
             self.commonCallBack(YES,resultData);
             break;
             

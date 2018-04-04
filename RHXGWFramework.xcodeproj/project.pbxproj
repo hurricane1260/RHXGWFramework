@@ -1056,6 +1056,10 @@
 		5C8EC4B92010944B001A1DF5 /* img_photo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8EC4B72010944A001A1DF5 /* img_photo@3x.png */; };
 		7F07F0A42057ABE60036ABA4 /* JHJRServerTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F07F0A02057ABE50036ABA4 /* JHJRServerTime.m */; };
 		7F07F0A72057ABE60036ABA4 /* JHJRServerTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F07F0A32057ABE50036ABA4 /* JHJRServerTime.h */; };
+		7F1CE2DD20722B0D00A9DA06 /* RevenueItemView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F1CE2D920722B0D00A9DA06 /* RevenueItemView.h */; };
+		7F1CE2DE20722B0D00A9DA06 /* RevenueItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1CE2DA20722B0D00A9DA06 /* RevenueItemView.m */; };
+		7F1CE2DF20722B0D00A9DA06 /* RevenueView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F1CE2DB20722B0D00A9DA06 /* RevenueView.h */; };
+		7F1CE2E020722B0D00A9DA06 /* RevenueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1CE2DC20722B0D00A9DA06 /* RevenueView.m */; };
 		7F3CF3FC2057B5FA008121BF /* libUrlEncryptor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F3CF3FA2057B5FA008121BF /* libUrlEncryptor.a */; };
 		7F3CF3FE2057B705008121BF /* UrlEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F3CF3FB2057B5FA008121BF /* UrlEncryptor.h */; };
 		7F3CF445205BA60E008121BF /* RHCustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3CF443205BA60E008121BF /* RHCustomTableView.m */; };
@@ -2125,6 +2129,10 @@
 		5C8EC4B72010944A001A1DF5 /* img_photo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_photo@3x.png"; sourceTree = "<group>"; };
 		7F07F0A02057ABE50036ABA4 /* JHJRServerTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHJRServerTime.m; sourceTree = "<group>"; };
 		7F07F0A32057ABE50036ABA4 /* JHJRServerTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHJRServerTime.h; sourceTree = "<group>"; };
+		7F1CE2D920722B0D00A9DA06 /* RevenueItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RevenueItemView.h; sourceTree = "<group>"; };
+		7F1CE2DA20722B0D00A9DA06 /* RevenueItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RevenueItemView.m; sourceTree = "<group>"; };
+		7F1CE2DB20722B0D00A9DA06 /* RevenueView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RevenueView.h; sourceTree = "<group>"; };
+		7F1CE2DC20722B0D00A9DA06 /* RevenueView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RevenueView.m; sourceTree = "<group>"; };
 		7F3CF3FA2057B5FA008121BF /* libUrlEncryptor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUrlEncryptor.a; sourceTree = "<group>"; };
 		7F3CF3FB2057B5FA008121BF /* UrlEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlEncryptor.h; sourceTree = "<group>"; };
 		7F3CF443205BA60E008121BF /* RHCustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHCustomTableView.m; sourceTree = "<group>"; };
@@ -3434,6 +3442,10 @@
 				5C8EC20420106FFE001A1DF5 /* RECHintView.m */,
 				5C8EC20020106FFE001A1DF5 /* RECMicAndCamView.h */,
 				5C8EC1D820106FFE001A1DF5 /* RECMicAndCamView.m */,
+				7F1CE2D920722B0D00A9DA06 /* RevenueItemView.h */,
+				7F1CE2DA20722B0D00A9DA06 /* RevenueItemView.m */,
+				7F1CE2DB20722B0D00A9DA06 /* RevenueView.h */,
+				7F1CE2DC20722B0D00A9DA06 /* RevenueView.m */,
 				5C8EC1C220106FFE001A1DF5 /* RevisitCell.h */,
 				5C8EC1E820106FFE001A1DF5 /* RevisitCell.m */,
 				5C8EC1CC20106FFE001A1DF5 /* RevisitChooseView.h */,
@@ -3840,6 +3852,7 @@
 				5C8EC28020106FFE001A1DF5 /* MobileVerifyBankView.h in Headers */,
 				5C2B3F652004729200175BFD /* StockListVO.h in Headers */,
 				5C2B3F4B2004729200175BFD /* TradeStockPriceVO.h in Headers */,
+				7F1CE2DD20722B0D00A9DA06 /* RevenueItemView.h in Headers */,
 				5C8EC28920106FFE001A1DF5 /* RevisitChooseView.h in Headers */,
 				5C2B3FBB2004729300175BFD /* ASIHTTPRequest.h in Headers */,
 				5C8EC2F320106FFE001A1DF5 /* RHVideoPassController.h in Headers */,
@@ -4030,6 +4043,7 @@
 				5C650E5E20062349000D1E11 /* AccountTokenDataStore.h in Headers */,
 				5C8EC085200DCA18001A1DF5 /* BuyAndSellPriceListCell.h in Headers */,
 				5C8EC073200DCA18001A1DF5 /* TradeStockHeadView.h in Headers */,
+				7F1CE2DF20722B0D00A9DA06 /* RevenueView.h in Headers */,
 				5C2B3F392004729200175BFD /* CMComponent.h in Headers */,
 				5C2B40332004729300175BFD /* ICompeteView.h in Headers */,
 				5C2B3FF62004729300175BFD /* CQCXSymbolVO.h in Headers */,
@@ -4756,6 +4770,7 @@
 				5C8EC2B220106FFE001A1DF5 /* RiskLetterView.m in Sources */,
 				5C2B402C2004729300175BFD /* NSData+NEUAES.m in Sources */,
 				5C8EC3AF20107771001A1DF5 /* RHLabelAttributeTool.m in Sources */,
+				7F1CE2DE20722B0D00A9DA06 /* RevenueItemView.m in Sources */,
 				5C2B3F812004729200175BFD /* UIImage+GIF.m in Sources */,
 				5C8EC37B201070E1001A1DF5 /* KSFrameView.m in Sources */,
 				5C2B3FD92004729300175BFD /* ASIDownloadCache.m in Sources */,
@@ -4815,6 +4830,7 @@
 				5C2B3F232004729200175BFD /* CMComponent.m in Sources */,
 				5C2B404D2004729300175BFD /* NSDate+RHJX_Inc.m in Sources */,
 				5C8EC2EE20106FFE001A1DF5 /* RHRiskTestResultController.m in Sources */,
+				7F1CE2E020722B0D00A9DA06 /* RevenueView.m in Sources */,
 				5C2B40022004729300175BFD /* CQCXSymbolVO.m in Sources */,
 				5C8EC2D220106FFE001A1DF5 /* BankListDataSource.m in Sources */,
 				5C2B401F2004729300175BFD /* STKData.m in Sources */,
