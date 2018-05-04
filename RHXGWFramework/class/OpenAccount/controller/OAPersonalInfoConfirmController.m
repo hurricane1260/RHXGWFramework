@@ -551,7 +551,6 @@ kRhPStrong RevenueView * revenueView;
     [self.revenueManager sendCommonRequestWithParam:param withRequestType:kUploadPersonRevenue withUrlString:@"crhUploadPersonRevenve" withCompletion:^(BOOL success, id resultData) {
         
         if (success) {
-            NSLog(@"========提交成功=========");
             //读取信息
             PersonInfoVo * infoVo = [[PersonInfoVo alloc] init];
             infoVo.name = self.nameView.detail;

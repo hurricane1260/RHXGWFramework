@@ -548,9 +548,6 @@ static CGFloat kHintTimeInterval = 3.0f;
 
     NSString * channel = [self.openAccountParam objectForKey:@"channel"];
     NSString * commission = [self.openAccountParam objectForKey:@"commission"];
-    if (channel.length==0) {
-        channel = @"xgw";
-    }
     if (commission.length==0) {
         commission = @"0.025%";
     }
@@ -558,9 +555,12 @@ static CGFloat kHintTimeInterval = 3.0f;
     self.isCRHOpenAccount = YES;//标记已经present了开户
     [PresentModalManager dismissModalView:self.loginView.view animation:NO completion:nil];
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    //    [param setObject:@"xgw" forKey:@"short_url"];
-    [param setObject:channel forKey:@"short_url"];
-    [param setObject:commission forKey:@"commission"];
+    
+    if ([self.openAccountParam objectForKey:@"channel"]) {
+        [param setObject:channel forKey:@"short_url"];
+    }
+        [param setObject:commission forKey:@"commission"];
+    
     [MNNavigationManager navigationToUniversalVC:self withClassName:kRHOpenAccountControllerClassName withParam:param];
 
 }
