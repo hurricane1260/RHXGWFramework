@@ -309,10 +309,7 @@ kRhPStrong ChooseStockDataManager * defaultViewManager;
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"TradeIsSelectedIndex" object:nil];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"appEnterForeground" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
-    self.loginView = nil;
-    self.userAccount = nil;
-    _password = nil;
-    self.dataManager = nil;
+    self.dataManager.delegate = nil;
 }
 
 #pragma mark ==============================================请求返回================================================

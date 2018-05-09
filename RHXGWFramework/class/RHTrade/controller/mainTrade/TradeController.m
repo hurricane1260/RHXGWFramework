@@ -86,8 +86,8 @@ static CGFloat kHintTimeInterval = 3.0f;
         self.isLogout = NO;
         self.isCRHOpenAccount = NO;
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skipToBuy:) name:@"ToBuy" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skipToSell:) name:@"ToSell" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skipToBuy:) name:@"RHNavigationToTradeBuy" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skipToSell:) name:@"RHNavigationToTradeSell" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tradeLoginCancled) name:kTradeLoginCancledNotificationName object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(navigationToCRH:) name:kTradeLoginPushToCRHNotificationName object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(crhPopHandler) name:kCRHPopNotificationName object:nil];
