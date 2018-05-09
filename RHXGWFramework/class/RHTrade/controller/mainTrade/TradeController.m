@@ -66,6 +66,8 @@
 
 @property (nonatomic, assign) BOOL isCRHOpenAccount;
 
+@property (nonatomic,strong)  NSDictionary * openAccountParam;
+
 @end
 
 @implementation TradeController
@@ -107,6 +109,10 @@ static CGFloat kHintTimeInterval = 3.0f;
                                                  selector:@selector(reachabilityChanged:)
                                                      name:kReachabilityChangedNotification
                                                    object:nil];
+        /**接收外面传的过来的渠道号 还有佣金*/
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(Receiveparam:) name:@"Receiveparam" object:nil];
+
+        
     }
     return self;
 }
@@ -275,6 +281,7 @@ static CGFloat kHintTimeInterval = 3.0f;
 //        [self requestPushMsg];
 //    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(navToIPOPage) name:kTradeToIPONotificationName object:nil];
+    
 
     [MTA trackPageViewBegin:@"c_transaction_page"];
 }
@@ -537,13 +544,34 @@ static CGFloat kHintTimeInterval = 3.0f;
 }
 
 - (void)ToOpenAccountVC{
+    
+
+    NSString * channel = [self.openAccountParam objectForKey:@"channel"];
+    NSString * commission = [self.openAccountParam objectForKey:@"commission"];
+    if (commission.length==0) {
+        commission = @"0.025%";
+    }
+    
     self.isCRHOpenAccount = YES;//标记已经present了开户
     [PresentModalManager dismissModalView:self.loginView.view animation:NO completion:nil];
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObject:@"xgw" forKey:@"short_url"];
+    
+    if ([self.openAccountParam objectForKey:@"channel"]) {
+        [param setObject:channel forKey:@"short_url"];
+    }
+        [param setObject:commission forKey:@"commission"];
+    
     [MNNavigationManager navigationToUniversalVC:self withClassName:kRHOpenAccountControllerClassName withParam:param];
 
 }
+-(void)Receiveparam:(NSNotification *)noti{
+    if ([noti.object isKindOfClass:[NSDictionary class]]) {
+        
+        self.openAccountParam = noti.object;
+    }
+    
+}
+
 
 #pragma mark ==============================================delegate================================================
 

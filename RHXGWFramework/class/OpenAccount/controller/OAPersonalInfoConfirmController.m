@@ -14,6 +14,8 @@
 #import "PersonInfoPickView.h"
 #import "protocolView.h"
 #import "BenefitView.h"
+#import "RevenueView.h"
+
 
 #import "OARequestManager.h"
 
@@ -69,6 +71,8 @@ kRhPStrong OARequestManager * requestManager;
 kRhPStrong OARequestManager * dicManager;
 
 kRhPStrong OARequestManager * infoManager;
+kRhPStrong OARequestManager * revenueManager;//个人税收信息提交
+
 
 kRhPCopy NSString * selectItem;
 
@@ -85,6 +89,9 @@ kRhPCopy NSString * educStr;
 kRhPCopy NSString * client_id;
 
 kRhPAssign BOOL needRectify;
+
+kRhPStrong RevenueView * revenueView;
+
 @end
 
 @implementation OAPersonalInfoConfirmController
@@ -260,6 +267,19 @@ kRhPAssign BOOL needRectify;
     [self.bottomScrollow addSubview:self.educView];
     
     [self.bottomScrollow addSubview:self.benefitView];
+    [self.bottomScrollow addSubview:self.revenueView];
+    self.revenueView.btnBlock = ^{
+        
+        [welf checkEnableNextBtn];
+    };
+    self.revenueView.heightBlock = ^(NSInteger height) {
+        
+        welf.revenueView.height = height;
+    };
+    self.revenueView.itemBlock = ^(ResidentType type) {
+        [welf warnRemarkWithType:type];
+    };
+
     
     self.nextStepBtn = [UIButton didBuildOpenAccNextBtnWithTitle:@"下一步"];
     [self.nextStepBtn addTarget:self action:@selector(nextStepBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -320,6 +340,14 @@ kRhPAssign BOOL needRectify;
     return _benefitView;
 }
 
+-(RevenueView *)revenueView{
+    if (!_revenueView) {
+        _revenueView = [[RevenueView alloc]init];
+    }
+    return _revenueView;
+    
+}
+
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     
@@ -355,6 +383,8 @@ kRhPAssign BOOL needRectify;
     
     self.benefitView.frame = CGRectMake(0, CGRectGetMaxY(self.educView.frame), self.view.width, 150.0f);
     
+      self.revenueView.frame = CGRectMake(0, CGRectGetMaxY(self.benefitView.frame), self.view.width, self.revenueView.height);
+    
     self.nextStepBtn.frame = CGRectMake((self.view.width - self.nextStepBtn.width) /2.0f, self.view.height - self.nextStepBtn.height - 14.0f, self.nextStepBtn.width, self.nextStepBtn.height);
 //    self.nextStepBtn.frame = CGRectMake(0, self.view.height - 110.0f, self.view.width, 110.0f);
     
@@ -362,12 +392,20 @@ kRhPAssign BOOL needRectify;
     
 //    self.bottomScrollow.contentSize = CGSizeMake(self.bottomScrollow.width, self.bottomScrollow.height + 259.0f);
     
+//    if (CGRectGetMaxY(self.educView.frame) < self.bottomScrollow.height) {
+//        self.bottomScrollow.contentSize = CGSizeMake(self.bottomScrollow.width, self.bottomScrollow.height + 259.0 + 150.0f - self.nextStepBtn.height);
+//    }
+//    else{
+//        self.bottomScrollow.contentSize = CGSizeMake(self.bottomScrollow.width, self.bottomScrollow.height + 259.0 + 150.0f - self.nextStepBtn.height - (CGRectGetMaxY(self.educView.frame) - self.bottomScrollow.height));
+//    }
+    
     if (CGRectGetMaxY(self.educView.frame) < self.bottomScrollow.height) {
-        self.bottomScrollow.contentSize = CGSizeMake(self.bottomScrollow.width, self.bottomScrollow.height + 259.0 + 150.0f - self.nextStepBtn.height);
+        self.bottomScrollow.contentSize = CGSizeMake(self.bottomScrollow.width, self.bottomScrollow.height + 259.0 + 150.0f+self.revenueView.height - self.nextStepBtn.height);
     }
     else{
-        self.bottomScrollow.contentSize = CGSizeMake(self.bottomScrollow.width, self.bottomScrollow.height + 259.0 + 150.0f - self.nextStepBtn.height - (CGRectGetMaxY(self.educView.frame) - self.bottomScrollow.height));
+        self.bottomScrollow.contentSize = CGSizeMake(self.bottomScrollow.width, self.bottomScrollow.height + 259.0 + 150.0f+self.revenueView.height - self.nextStepBtn.height - (CGRectGetMaxY(self.educView.frame) - self.bottomScrollow.height));
     }
+
 
     self.careerPickView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
 }
@@ -433,7 +471,7 @@ kRhPAssign BOOL needRectify;
     NSString * cardId = self.cardIdView.detail;
     NSString * addId = self.addressIdView.detail;
     NSString * addCon = self.addressConnectView.detail;
-    if (!name.length || !cardId.length || !addId.length || !addCon.length) {
+    if (!name.length || !cardId.length || !addId.length || !addCon.length|| !self.revenueView.isSelectBtn) {
         self.nextStepBtn.enabled = NO;
     }
 //    else if (!self.isSelected){
@@ -455,16 +493,17 @@ kRhPAssign BOOL needRectify;
 
         return;
     }
+    [self submitRevenueCertificate];
     
-    //读取信息
-    PersonInfoVo * infoVo = [[PersonInfoVo alloc] init];
-    infoVo.name = self.nameView.detail;
-    infoVo.cardId = self.cardIdView.detail;
-    infoVo.address = self.addressIdView.detail;
-    self.alertView.detailData = infoVo;
-    [self.view setNeedsLayout];
-    
-    self.alertView.hidden = NO;
+//    //读取信息
+//    PersonInfoVo * infoVo = [[PersonInfoVo alloc] init];
+//    infoVo.name = self.nameView.detail;
+//    infoVo.cardId = self.cardIdView.detail;
+//    infoVo.address = self.addressIdView.detail;
+//    self.alertView.detailData = infoVo;
+//    [self.view setNeedsLayout];
+//
+//    self.alertView.hidden = NO;
 }
 
 - (void)naviToAccountPage{
@@ -493,6 +532,42 @@ kRhPAssign BOOL needRectify;
     }
     return _infoManager;
 }
+
+- (OARequestManager *)revenueManager{
+    if (!_revenueManager) {
+        _revenueManager = [[OARequestManager alloc] init];
+    }
+    return _revenueManager;
+}
+#pragma mark--提交个人税收证明
+-(void)submitRevenueCertificate{
+    if (!self.client_id.length) {
+        return;
+    }
+    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+    [param setValue:self.client_id forKey:@"user_id"];
+    [param setValue:@"1" forKey:@"revenue_inmate_type"];
+    
+    [self.revenueManager sendCommonRequestWithParam:param withRequestType:kUploadPersonRevenue withUrlString:@"crhUploadPersonRevenve" withCompletion:^(BOOL success, id resultData) {
+        
+        if (success) {
+            //读取信息
+            PersonInfoVo * infoVo = [[PersonInfoVo alloc] init];
+            infoVo.name = self.nameView.detail;
+            infoVo.cardId = self.cardIdView.detail;
+            infoVo.address = self.addressIdView.detail;
+            self.alertView.detailData = infoVo;
+            [self.view setNeedsLayout];
+            self.alertView.hidden = NO;
+            
+        }else{
+            [CMProgress showWarningProgressWithTitle:nil message:@"税收证明提交失败" warningImage:nil duration:1];
+        }
+        
+    }];
+    
+}
+
 
 - (void)requestClientInfo{
     __weak typeof(self) welf = self;
@@ -750,5 +825,28 @@ kRhPAssign BOOL needRectify;
     }
     [self.view setNeedsLayout];
 }
+-(void)warnRemarkWithType:(ResidentType)type{
+    
+    
+    NSString * warnStr;
+    if (type==notResident) {
+        warnStr = @"如果是非税收居民，不能继续网上开户，请详询客服热线400-088-5558";
+    }else if (type==otherResident){
+        warnStr = @"如果是既是中国税收居民又是其他国家（地区）税收居民不能继续网上开户，请详询客服热线400-088-5558";
+    }else{
+        return;
+    }
+    
+    
+    UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"提示" message:warnStr preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *defaultAction=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *actoin){
+    }];//在代码块中可以填写具体这个按钮执行的操作
+    [alert addAction:defaultAction];
+    
+    [self presentViewController: alert animated:YES completion:nil];
+    
+    
+}
+
 
 @end

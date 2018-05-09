@@ -11,8 +11,8 @@
 #import "TradeSessionManager.h"
 #import "AccountTokenDataStore.h"
 //#import "AccountDataManager.h"
-//#import "URLEncryptor.h"
-//#import "JHJRServerTime.h"
+#import "URLEncryptor.h"
+#import "JHJRServerTime.h"
 
 @implementation HTTPRequestManager
 
@@ -49,25 +49,29 @@
     
     
     //增加针对理财接口的客户端认证
-//    NSString *fundUrl = [CMHttpURLManager getHostIPWithServID:@"followOrderFundUrl"];//理财前缀
-//    BOOL isFund = [request.urlString hasPrefix:fundUrl];
-//    if (isFund) {
-//        NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-//        AccountTokenDataStore *store = [[AccountTokenDataStore alloc]init];
-//        NSString *clientToken = store.accountToken;
-//        NSString *client = @"iOS";
-//        [param setValue:client forKey:@"client"];
-//        [param setValue:version forKey:@"appVersion"];
-//        [param setValue:clientToken forKey:@"clientToken"];
-//        [param setValue:@"CP150114001" forKey:@"productId"];
-//        URLEncryptor *encryptor = [[URLEncryptor alloc]init];
-//        NSString *appKey = [JHJRServerTime getJHJRAppKey];
-//        NSString *appSecret = [JHJRServerTime getJHJRAppSecret];
-//        NSDictionary *newParams = [encryptor encryptParameters:request.reqParam withAppKey:appKey appSecret:appSecret timeStamp:[JHJRServerTime currentServerTime]];
-//        request.reqParam = newParams;
-//        return request;
-//    }
-    
+    NSString *fundUrl = [CMHttpURLManager getHostIPWithServID:@"followOrderFundUrl"];//理财前缀
+    BOOL isFund = [request.urlString hasPrefix:fundUrl];
+    if (isFund) {
+        NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+        // AccountTokenDataStore *store = [[AccountTokenDataStore alloc]init];
+        // NSString *clientToken = store.accountToken;
+        NSString *client = @"iOS";
+        [param setValue:client forKey:@"client"];
+        [param setValue:version forKey:@"appVersion"];
+        //[param setValue:clientToken forKey:@"clientToken"];
+        [param setValue:@"CP140813001" forKey:@"productId"];
+        //clientcheck 是避开理财后台签名验证的参数,如果线上环境需要去掉改参数
+        //[param setValue:@"0" forKey:@"clientcheck"];
+        //URLEncryptor *encryptor = [[URLEncryptor alloc]init];
+        NSString *appKey = [JHJRServerTime getJHJRAppKey];
+        NSString *appSecret = [JHJRServerTime getJHJRAppSecret];
+        [UrlEncryptor setAppKey:appKey appSecret:appSecret];
+        NSDictionary * newParams = [UrlEncryptor encryptPOSTParams:param timestamp:[JHJRServerTime currentServerTime]];
+        //NSDictionary *newParams = [encryptor encryptParameters:param withAppKey:appKey appSecret:appSecret timeStamp:[JHJRServerTime currentServerTime]];
+        request.reqParam = newParams;
+        return request;
+        
+    }
     
     
     //给跟投王除交易外的接口加统计参数

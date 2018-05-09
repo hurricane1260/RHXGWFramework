@@ -254,6 +254,8 @@ typedef enum : NSUInteger{
     
     kUploadPersonIdImg,//上传身份证图片
     kUploadPersonMsg,//上传个人信息
+    kUploadPersonRevenue,//个人税收证明
+
     
     kQueryBranchCommission,//查询营业部佣金
     kSetTradePassWord,//设置交易 资金密码

@@ -10,7 +10,7 @@
 #import "TradeIPOWeekTableViewCell.h"
 //#import "MNGroupPositionCell.h"
 
-@interface RHBaseTabDataSource ()//TradeIPOWeekTableViewCellDelegate
+@interface RHBaseTabDataSource ()
 
 kRhPAssign CGFloat reasonHeight;
 
@@ -54,7 +54,6 @@ kRhPAssign CGFloat reasonHeight;
         else{
             model = self.dataList[indexPath.section][indexPath.row];
         }
-        NSLog(@"-----cell赋值了--------");
         [retCell loadDataWithModel:model];
         return;
     }
@@ -104,8 +103,6 @@ kRhPAssign CGFloat reasonHeight;
     else{
         count = [(NSArray *)self.dataList[section] count];
     }
-    NSLog(@"-----cell个数--------");
-
     return count;
 }
 
@@ -149,7 +146,7 @@ kRhPAssign CGFloat reasonHeight;
     
     if(!cell){
         cell = [[class alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIndentifier];
-//        __weak typeof (self) welf = self;
+        __weak typeof (self) welf = self;
 //        if ([cell isKindOfClass:[MNGroupPositionCell class]]) {
 //            MNGroupPositionCell * positionCell = cell;
 //            positionCell.showCallBack = ^(NSDictionary * param){

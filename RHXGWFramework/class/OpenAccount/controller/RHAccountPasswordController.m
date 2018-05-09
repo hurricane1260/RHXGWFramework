@@ -319,6 +319,9 @@ kRhPStrong NSMutableArray * managerArr;
 
     __weak typeof(self) welf = self;
     [self.requestManager sendCommonRequestWithParam:param withRequestType:kQueryBranchCommission withUrlString:@"crhQueryBranchCommission" withCompletion:^(BOOL success, id resultData) {
+        
+         NSString * commission = [RHOpenAccStoreData getOpenAccCachUserInfoWithKey:@"commission"];
+        
         if (success) {
 //            if (!resultData) {
 //                welf.topView.commission = @"佣金：0.025%";
@@ -332,20 +335,14 @@ kRhPStrong NSMutableArray * managerArr;
 //                    welf.topView.commission = @"佣金：0.025%";
 //                }
 //            }
-            NSString * short_url = [RHOpenAccStoreData getOpenAccCachUserInfoWithKey:@"short_url"];
-            if ([short_url isEqualToString:@"xgw"]) {
-                welf.topView.commission = @"佣金：0.025%";
-            }
-            else if ([short_url isEqualToString:@"xycf"]){
-                welf.topView.commission = @"佣金：0.08%";
-            }
-            else{
-                welf.topView.commission = @"佣金：0.025%";
-            }
+            
+              welf.topView.commission = [NSString stringWithFormat:@"佣金: %@",commission];
             
         }
         else{
-            welf.topView.commission = @"佣金：0.025%";
+//            welf.topView.commission = @"佣金：0.025%";
+            welf.topView.commission = [NSString stringWithFormat:@"佣金: %@",commission];
+
         }
         [welf.view setNeedsLayout];
     }];

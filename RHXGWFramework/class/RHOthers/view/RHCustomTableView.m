@@ -37,18 +37,31 @@ kRhPStrong UILabel * hintLabel;
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
     if (self = [super initWithFrame:frame style:style]) {
         
-        _tabDataSource = [[RHBaseTabDataSource alloc] init];
-        _tabDataSource.delegate = self;
-        self.dataSource = _tabDataSource;
-        self.delegate = _tabDataSource;
+//        _tabDataSource = [[RHBaseTabDataSource alloc] init];
+//        _tabDataSource.delegate = self;
+//        self.dataSource = _tabDataSource;
+//        self.delegate = _tabDataSource;
         self.tabStyle = style;
         
         self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0.01)];
-        
+        self.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0.01)];
         [self addSubview:self.hintView];
     }
     return self;
 }
+
+@synthesize tabDataSource = _tabDataSource;
+- (void)setTabDataSource:(RHBaseTabDataSource *)tabDataSource{
+    _tabDataSource = tabDataSource;
+}
+
+- (RHBaseTabDataSource *)tabDataSource{
+    if (!_tabDataSource) {
+        _tabDataSource = [[RHBaseTabDataSource alloc] init];
+    }
+    return _tabDataSource;
+}
+
 
 - (UIView *)hintView{
     if (_hintView) {
@@ -57,7 +70,7 @@ kRhPStrong UILabel * hintLabel;
     _hintView = [[UIView alloc] init];
     [self addSubview:_hintView];
     
-    _imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Frameworks/RHXGWFramework.framework/ic_prompt_transaction"]];
+    _imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ic_prompt_transaction"]];
     [_hintView addSubview:_imgView];
     
     _hintLabel = [UILabel didBuildLabelWithText:@"" font:font1_common_xgw textColor:color4_text_xgw wordWrap:NO];;
@@ -96,6 +109,12 @@ kRhPStrong UILabel * hintLabel;
 //}
 
 - (void)loadSettingWithDataList:(NSArray *)dataList withHeight:(CGFloat)height withGapHeight:(CGFloat)gapHeight  withCellName:(NSString *)cellName withCellID:(NSString *)cellID{
+    
+    //    self.tabDataSource = [[RHBaseTabDataSource alloc] init];
+    self.tabDataSource.delegate = self;
+    self.dataSource = self.tabDataSource;
+    self.delegate = self.tabDataSource;
+    
     _tabDataSource.dataList = dataList;
     _tabDataSource.itemViewClassName = cellName;
     _tabDataSource.cellHeight = height;
@@ -142,6 +161,8 @@ kRhPStrong UILabel * hintLabel;
     
     //group
     if (![data isKindOfClass:[NSArray class]] || data == nil) {
+        _dataList = nil;
+        [self reloadData];
         return;
     }
     
@@ -150,7 +171,6 @@ kRhPStrong UILabel * hintLabel;
         _dataList = arr[0];
         [self computeTableViewHeight];
         _tabDataSource.dataList = _dataList;
-        NSLog(@"--------%@--------",_dataList);
         
     }
     else if(arr.count == 2){
@@ -252,4 +272,24 @@ kRhPStrong UILabel * hintLabel;
     }
 }
 
+- (void)tableCellDidSelectedWithIndexPath:(id)data{
+    if (data == nil) {
+        return;
+    }
+    if (self.customDelegate && [self.customDelegate respondsToSelector:@selector(didSelectWithIndexPath:)]) {
+        [self.customDelegate didSelectWithIndexPath:data];
+    }
+}
+
+- (void)loadNextPageDataHandler{
+    if (self.customDelegate && [self.customDelegate respondsToSelector:@selector(loadNextPage)]) {
+        [self.customDelegate loadNextPage];
+    }
+}
+
+//- (void)tableViewDidScroll:(UIScrollView *)tableView{
+//    if (tableView.contentOffset.y < 0.1) {
+//        tableView.scrollEnabled = NO;
+//    }
+//}
 @end
